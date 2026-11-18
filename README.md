@@ -25,6 +25,7 @@ docker compose config --quiet
 - M5 引航排程：`/module/5`，独立计算 `POST /api/5`。
 - M6 计划对账：`/module/6`，独立计算 `POST /api/6`。
 - M7 变更复核：`/module/7`，独立计算 `POST /api/7`。
+- M8 候补递补：`/module/8`，独立计算 `POST /api/8`。
 
 ## 输入与输出
 

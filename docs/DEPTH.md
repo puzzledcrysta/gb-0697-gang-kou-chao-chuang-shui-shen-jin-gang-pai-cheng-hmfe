@@ -14,6 +14,7 @@
 | M5 引航排程 | 运行引航排程并核对证据 | `POST /api/5` | `app/modules/m5_schedule/rules.py` | `tests/test_schedule.py` |
 | M6 计划对账 | 运行计划对账并核对证据 | `POST /api/6` | `app/modules/m6_balance/rules.py` | `tests/test_balance.py` |
 | M7 变更复核 | 运行变更复核并核对证据 | `POST /api/7` | `app/modules/m7_changes/rules.py` | `tests/test_changes.py` |
+| M8 候补递补 | 运行候补递补并核对证据 | `POST /api/8` | `app/modules/m8_backfill/rules.py` | `tests/test_backfill.py` |
 
 ## 陷阱登记
 
@@ -27,6 +28,9 @@
 | TRAP-14 | 同版冲突 | 静默采信错误值 | 隔离冲突 | `app/modules/m1_tides/rules.py` | `tests/test_tides.py::test_tides_duplicate` |
 | TRAP-23 | 相邻端点 | 静默采信错误值 | 半开区间 | `app/modules/m4_channel/rules.py` | `tests/test_channel.py::test_channel_end` |
 | TRAP-25 | 旧修订 | 静默采信错误值 | 拒绝陈旧版本 | `app/modules/m7_changes/rules.py` | `tests/test_changes.py::test_change_stale` |
+| TRAP-26 | 双源离道时间不一致 | 取较早值提前腾航道，两船撞同一时段 | 两源到齐才释放，取较晚时刻并标记 | `app/modules/m8_backfill/rules.py` | `tests/test_backfill.py::test_mismatched_sources_release_at_later_time` |
+| TRAP-27 | 回执未对账先腾航道 | 单源回执即释放，撞已确认空档 | 缺源保持PENDING不裁剪占用 | `app/modules/m8_backfill/rules.py` | `tests/test_backfill.py::test_single_source_keeps_channel_occupied` |
+| TRAP-28 | 重试重复安排 | 候补船被排两次 | 同摘要复用批次，台账按船唯一 | `app/modules/m8_backfill/rules.py` | `tests/test_backfill.py::test_retry_does_not_schedule_waitlist_twice` |
 
 ## 对账规则
 

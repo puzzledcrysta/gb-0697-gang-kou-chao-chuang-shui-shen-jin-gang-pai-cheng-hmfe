@@ -2,7 +2,7 @@
 
 `POST /api/run`：{"text":"CSV内容"}。同规则版本与输入摘要只产生一条批次。
 
-`GET/POST /api/1` 至 `/api/7`：独立样例或自定义文件计算。各模块返回 report、quarantine、balance。
+`GET/POST /api/1` 至 `/api/8`：独立样例或自定义文件计算。各模块返回 report、quarantine、balance。
 
 `POST /api/review`：id、整数revision、decision取通过或退回。旧版本409；阻断项不能通过。
 
